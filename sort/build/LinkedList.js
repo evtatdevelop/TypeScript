@@ -1,6 +1,22 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinkedList = void 0;
+var Sorter_1 = require("./Sorter");
 var ListNode = /** @class */ (function () {
     function ListNode(data) {
         this.data = data;
@@ -8,11 +24,12 @@ var ListNode = /** @class */ (function () {
     }
     return ListNode;
 }());
-var LinkedList = /** @class */ (function () {
+var LinkedList = /** @class */ (function (_super) {
+    __extends(LinkedList, _super);
     function LinkedList() {
-        var _this = this;
-        this.head = null;
-        this.add = function (data) {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.head = null;
+        _this.add = function (data) {
             var node = new ListNode(data);
             if (!_this.head) {
                 _this.head = node;
@@ -24,7 +41,7 @@ var LinkedList = /** @class */ (function () {
             }
             tail.next = node;
         };
-        this.at = function (index) {
+        _this.at = function (index) {
             if (!_this.head)
                 throw new Error("Index " + index + " is out of bounds.");
             var counter = 0;
@@ -37,12 +54,12 @@ var LinkedList = /** @class */ (function () {
             }
             throw new Error("Index " + index + " is out of bounds.");
         };
-        this.compare = function (i, j) {
+        _this.compare = function (i, j) {
             if (!_this.head)
                 throw new Error('The list is empty');
             return _this.at(i).data > _this.at(j).data;
         };
-        this.swap = function (i, j) {
+        _this.swap = function (i, j) {
             // Actually this code should be more complicated
             var leftNode = _this.at(i);
             var rightNode = _this.at(j);
@@ -50,15 +67,18 @@ var LinkedList = /** @class */ (function () {
             leftNode.data = rightNode.data;
             rightNode.data = temp;
         };
-        this.print = function () {
+        _this.print = function () {
             if (!_this.head)
                 return;
             var node = _this.head;
+            var result = '';
             while (node) {
-                console.log(node.data);
+                result += ' ' + node.data;
                 node = node.next;
             }
+            console.log(result);
         };
+        return _this;
     }
     Object.defineProperty(LinkedList.prototype, "length", {
         get: function () {
@@ -76,5 +96,5 @@ var LinkedList = /** @class */ (function () {
         configurable: true
     });
     return LinkedList;
-}());
+}(Sorter_1.Sorter));
 exports.LinkedList = LinkedList;

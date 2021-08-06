@@ -1,3 +1,4 @@
+import { Sorter } from "./Sorter";
 class ListNode {
 
   next: ListNode | null = null;
@@ -5,9 +6,9 @@ class ListNode {
   constructor(public data: number) {}
 }
 
-export class LinkedList {
+export class LinkedList extends Sorter{
   head: ListNode | null = null;
-
+  
   add = (data: number): void => {
     const node = new ListNode(data);
 
@@ -67,9 +68,11 @@ export class LinkedList {
   print = (): void => {
     if (!this.head) return;
     let node: ListNode | null = this.head;
+    let result: string = '';
     while(node) {
-      console.log(node.data);
+      result += ' ' + node.data;
       node = node.next;
     }
+    console.log(result);
   }
 }

@@ -1,5 +1,8 @@
-export class NumberCollectiom {
-  constructor(public data: number[]) {}
+import { Sorter } from "./Sorter";
+export class NumberCollectiom extends Sorter{
+  constructor(public data: number[]) {
+    super();
+  }
   
   get length(): number {
     return this.data.length
